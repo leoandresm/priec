@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoDiscoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditTipoDiscoLabel_idDisco}" for="idDisco" />
+                        <p:inputText id="idDisco" value="#{tipoDiscoController.selected.idDisco}" title="#{bundle.EditTipoDiscoTitle_idDisco}" required="true" requiredMessage="#{bundle.EditTipoDiscoRequiredMessage_idDisco}"/>
+                        <h:outputLabel value="#{bundle.EditTipoDiscoLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{tipoDiscoController.selected.marca}" title="#{bundle.EditTipoDiscoTitle_marca}" required="true" requiredMessage="#{bundle.EditTipoDiscoRequiredMessage_marca}"/>
+                        <h:outputLabel value="#{bundle.EditTipoDiscoLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{tipoDiscoController.selected.modelo}" title="#{bundle.EditTipoDiscoTitle_modelo}" required="true" requiredMessage="#{bundle.EditTipoDiscoRequiredMessage_modelo}"/>
+                        <h:outputLabel value="#{bundle.EditTipoDiscoLabel_velocidad}" for="velocidad" />
+                        <p:inputText id="velocidad" value="#{tipoDiscoController.selected.velocidad}" title="#{bundle.EditTipoDiscoTitle_velocidad}" required="true" requiredMessage="#{bundle.EditTipoDiscoRequiredMessage_velocidad}"/>
+                        <h:outputLabel value="#{bundle.EditTipoDiscoLabel_capacidad}" for="capacidad" />
+                        <p:inputText id="capacidad" value="#{tipoDiscoController.selected.capacidad}" title="#{bundle.EditTipoDiscoTitle_capacidad}" required="true" requiredMessage="#{bundle.EditTipoDiscoRequiredMessage_capacidad}"/>
+                        <h:outputLabel value="#{bundle.EditTipoDiscoLabel_tecnologia}" for="tecnologia" />
+                        <p:inputText id="tecnologia" value="#{tipoDiscoController.selected.tecnologia}" title="#{bundle.EditTipoDiscoTitle_tecnologia}" required="true" requiredMessage="#{bundle.EditTipoDiscoRequiredMessage_tecnologia}"/>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{tipoDiscoController.update}" value="#{bundle.EditTipoDiscoSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditTipoDiscoViewLink}" icon="ui-icon-searh"/>
+
+                    <p:commandButton ajax="false" action="#{tipoDiscoController.prepareList}" value="#{bundle.EditTipoDiscoShowAllLink}" immediate="true" />
+
+                    <p:button outcome="/index" value="#{bundle.EditTipoDiscoIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSedeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>            
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateSedeLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{sedeController.selected.descripcion}" title="#{bundle.CreateSedeTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateSedeRequiredMessage_descripcion}"/>
+                        <h:outputLabel value="#{bundle.CreateSedeLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{sedeController.selected.telefono}" title="#{bundle.CreateSedeTitle_telefono}" required="true" requiredMessage="#{bundle.CreateSedeRequiredMessage_telefono}"/>
+                        <h:outputLabel value="#{bundle.CreateSedeLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{sedeController.selected.direccion}" title="#{bundle.CreateSedeTitle_direccion}" required="true" requiredMessage="#{bundle.CreateSedeRequiredMessage_direccion}"/>
+                    </p:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{sedeController.create}" value="#{bundle.CreateSedeSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{sedeController.prepareList}" value="#{bundle.CreateSedeShowAllLink}" immediate="true"/>
+
+                    <p:button outcome="/index" value="#{bundle.CreateSedeIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/#{loginBean.menu}/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <div id="lista" align="center">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListUsuarioEmpty}" rendered="#{usuarioController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{usuarioController.items.rowCount > 0}">
+                        <p:dataTable value="#{usuarioController.lazyModel}"                                      
+                                     var="item" style="border:solid 1px"
+                                     paginator="true" rows="10"
+                                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} 
+                                     {PreviousPageLink} {CurrentPageReport} {NextPageLink}
+                                     {LastPageLink}"  
+                                     rowsPerPageTemplate="5,10,15" 
+                                     lazy="true"
+                                     emptyMessage="No se encontraron usuarios con el criterio dado"
+                                     widgetVar="usuariosTable">                            
+                            <p:column headerText="#{bundle.ListUsuarioTitle_idGenesisUniminuto}"
+                                      filterBy="#{item.idGenesisUniminuto}">
+                                <h:outputText value="#{item.idGenesisUniminuto}"/>
+                            </p:column>
+                            <p:column headerText="#{bundle.ListUsuarioTitle_nombres}"
+                                      filterBy="#{item.nombres}">
+                                <h:outputText value="#{item.nombres}"/>
+                            </p:column>
+                            <p:column headerText="#{bundle.ListUsuarioTitle_primeraPellido}"
+                                      filterBy="#{item.primeraPellido}">
+                                <h:outputText value="#{item.primeraPellido}"/>
+                            </p:column>
+                            <p:column headerText="#{bundle.ListUsuarioTitle_segundoApellido}"
+                                      filterBy="#{item.segundoApellido}">
+                                <h:outputText value="#{item.segundoApellido}"/>
+                            </p:column>
+                            <p:column headerText="#{bundle.ListUsuarioTitle_email}"
+                                      filterBy="#{item.email}">
+                                <h:outputText value="#{item.email}"/>
+                            </p:column>
+                            <p:column headerText="#{bundle.ListUsuarioTitle_telefono}"
+                                      filterBy="#{item.telefono}">
+                                <h:outputText value="#{item.telefono}"/>
+                            </p:column>
+                            <p:column headerText="#{bundle.ListUsuarioTitle_idTipoUsuario}"
+                                      filterBy="#{item.idTipoUsuario}"
+                                      filterOptions="#{tipoUsuarioController.itemsAvailableSelectOne}">
+                                <h:outputText value="#{item.idTipoUsuario.descripcion}"/>
+                            </p:column>
+                            <!--<p:column headerText="#{bundle.ListUsuarioTitle_idProgramaAcademico}"
+                                      filterBy="#{item.idProgramaAcademico}">
+                                <h:outputText value="#{item.idProgramaAcademico.descripcion}"/>
+                            </p:column>
+                            <p:column headerText="#{bundle.ListUsuarioTitle_idSexo}"
+                                      filterBy="#{item.idSexo}"
+                                      filterOptions="#{sexoController.itemsAvailableSelectOne}">
+                                <h:outputText value="#{item.idSexo.descripcion}"/>
+                            </p:column>-->
+                            <p:column headerText="#{bundle.ListUsuarioTitle_idRol}"
+                                      filterBy="#{item.idRol}"
+                                      filterOptions="#{rolesController.itemsAvailableSelectOne}">
+                                 <h:outputText value="#{item.idRol.descripcion}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                                </f:facet>
+                                <p:commandButton ajax="false" action="#{usuarioController.prepareView}" icon="ui-icon-search" style="font-size:0.7em !important;"/>
+
+                                <p:commandButton ajax="false" action="#{usuarioController.prepareEdit}" icon="ui-icon-pencil" style="font-size:0.7em !important;"/>
+
+                                <p:commandButton ajax="false" action="#{usuarioController.destroy}" icon="ui-icon-trash" style="font-size:0.7em !important;"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <p:commandButton ajax="false" action="/usuario/Create.xhtml" actionListener="#{usuarioController.prepareCreate}" value="#{bundle.ListUsuarioCreateLink}" icon="ui-icon-document"/>
+
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

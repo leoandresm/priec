@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoFallaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditTipoFallaLabel_idTipoFalla}" for="idTipoFalla" />
+                        <p:inputText id="idTipoFalla" value="#{tipoFallaController.selected.idTipoFalla}" title="#{bundle.EditTipoFallaTitle_idTipoFalla}" required="true" requiredMessage="#{bundle.EditTipoFallaRequiredMessage_idTipoFalla}"/>
+                        <h:outputLabel value="#{bundle.EditTipoFallaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tipoFallaController.selected.descripcion}" title="#{bundle.EditTipoFallaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTipoFallaRequiredMessage_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{tipoFallaController.update}" value="#{bundle.EditTipoFallaSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditTipoFallaViewLink}" icon="ui-icon-searh"/>
+
+                    <p:commandButton ajax="false" action="#{tipoFallaController.prepareList}" value="#{bundle.EditTipoFallaShowAllLink}" immediate="true" />
+
+                    <p:button outcome="/index" value="#{bundle.EditTipoFallaIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

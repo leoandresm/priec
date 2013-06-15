@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText>Bienvenid@</h:outputText>
+        </ui:define>
+        <ui:define name="body">
+           <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+            <div align="center" style="position:absolute; top:50%; left: 50%; 
+                  height: 200px; margin-top: -100px; width: 700px; margin-left: -350px; 
+                  color: #1E4B99;">                
+                <h2>BIENVENIDO AL APLICATIVO WEB DE REPORTE DE INCIDENTES PARA LOS EQUIPOS
+                DE CÓMPUTO DE LA CORPORACIÓN UNIVERSITARIA MINUTO DE DIOS</h2>
+                <h1 style="font-family: serif; color: #DEAD02; text-shadow: -1.5px -1.5px white, 1.5px 1.5px #333">PRIEC-WEB</h1>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+
+

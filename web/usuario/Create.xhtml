@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="#{loginBean.menu}/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">           
+            <h:form>
+                <p:growl id="msgs" showDetail="false" sticky="false"/>
+                <div id="formulario" align="center">
+                    <p:panelGrid >
+                        <f:facet name="header">
+                            <p:row><p:column colspan="3">DATOS USUARIO</p:column></p:row>                            
+                        </f:facet>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_idGenesisUniminuto}" for="idGenesisUniminuto" />
+                            </p:column>
+                            <p:column style="border-right: white">
+                                <p:inputText id="idGenesisUniminuto" value="#{usuarioController.selected.idGenesisUniminuto}" 
+                                             title="#{bundle.CreateUsuarioTitle_idGenesisUniminuto}" required="true" 
+                                             requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idGenesisUniminuto}" styleClass="inputs">
+                                </p:inputText>     
+                            </p:column>
+                            <p:column style="border-left: white;">
+                                <p:message for="idGenesisUniminuto"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombres}" for="nombres" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="nombres" value="#{usuarioController.selected.nombres}" title="#{bundle.CreateUsuarioTitle_nombres}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombres}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="nombres" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_primeraPellido}" for="primeraPellido" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="primeraPellido" value="#{usuarioController.selected.primeraPellido}" title="#{bundle.CreateUsuarioTitle_primeraPellido}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_primeraPellido}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="primeraPellido" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_segundoApellido}" for="segundoApellido" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="segundoApellido" value="#{usuarioController.selected.segundoApellido}" title="#{bundle.CreateUsuarioTitle_segundoApellido}" required="false"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="segundoApellido" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_email}" for="email" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="email" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_telefono}" for="telefono" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="telefono" value="#{usuarioController.selected.telefono}" title="#{bundle.CreateUsuarioTitle_telefono}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_telefono}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="telefono" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_password}" for="password" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:password id="password" value="#{usuarioController.selected.password}" match="passwordVal" feedback="true" strongLabel="Fuerte" goodLabel="Buena" promptLabel="Por favor ingrese una contraseña" weakLabel="Débil" title="#{bundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_password}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="password" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_password_validacion}" for="passwordVal" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:password id="passwordVal" value="#{usuarioController.selected.password}" feedback="true" strongLabel="Fuerte" goodLabel="Buena" promptLabel="Por favor ingrese una contraseña" weakLabel="Débil" title="#{bundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_password}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="passwordVal" />
+                            </p:column>
+                        </p:row>                        
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_idSexo}" for="idSexo" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="idSexo" value="#{usuarioController.selected.idSexo}"  required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idSexo}">
+                                    <f:selectItems value="#{sexoController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idSexo" />
+                            </p:column>
+                        </p:row>                           
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_idTipoUsuario}" for="idTipoUsuario" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="idTipoUsuario" value="#{usuarioController.selected.idTipoUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idTipoUsuario}">
+                                    <f:selectItems value="#{tipoUsuarioController.itemsAvailableSelectOne}"/>
+                                    <p:ajax update="idProgramaAcademico"/>
+                                </p:selectOneMenu>   
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idTipoUsuario" />
+                            </p:column>
+                        </p:row>
+                        <p:row id="rowProgramaAcademico">
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_idProgramaAcademico}" for="idProgramaAcademico"/>
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="idProgramaAcademico" value="#{usuarioController.selected.idProgramaAcademico}" disabled="#{!usuarioController.estudiante}" required="#{usuarioLogueadoController.estudiante}" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idProgramaAcademico}">
+                                    <f:selectItems value="#{programaAcademicoController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idProgramaAcademico" />
+                            </p:column>
+                        </p:row>
+                        <p:row rendered="#{usuarioLogueadoController.admin}" >
+                            <p:column>
+                                <h:outputLabel value="#{bundle.CreateUsuarioLabel_idRol}" for="idRol" rendered="#{usuarioLogueadoController.admin}"/>
+                            </p:column>
+                            <p:column style="border-right:  white;">
+                                <p:selectOneMenu rendered="#{usuarioLogueadoController.admin}" id="idRol" value="#{usuarioController.selected.idRol}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idRol}">
+                                    <f:selectItems value="#{rolesController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>                          
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message rendered="#{usuarioLogueadoController.admin}" for="idRol" />
+                            </p:column>
+                        </p:row>   
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton ajax="false" action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" icon="ui-icon-disk"/>
+                    <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
+                    <p:button rendered="#{loginBean.regresarPrincipal}" outcome="/index" value="#{bundle.CreateUsuarioIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

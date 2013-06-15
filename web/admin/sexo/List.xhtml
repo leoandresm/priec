@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSexoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <div id="lista" align="center">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListSexoEmpty}" rendered="#{sexoController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{sexoController.items.rowCount > 0}">
+                        <h:outputText value="#{sexoController.pagination.pageFirstItem + 1}..#{sexoController.pagination.pageLastItem + 1}/#{sexoController.pagination.itemsCount}"/>&nbsp;
+                        <p:commandLink action="#{sexoController.previous}" value="#{bundle.Previous} #{sexoController.pagination.pageSize}" rendered="#{sexoController.pagination.hasPreviousPage}"/>&nbsp;
+                        <p:commandLink action="#{sexoController.next}" value="#{bundle.Next} #{sexoController.pagination.pageSize}" rendered="#{sexoController.pagination.hasNextPage}"/>&nbsp;
+                        <p:dataTable value="#{sexoController.items}" var="item" rowStyleClass="jsfcrud_odd_row,jsfcrud_even_row" style="border:solid 1px">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListSexoTitle_idSexo}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idSexo}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListSexoTitle_descripcion}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcion}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <p:commandButton ajax="false" action="#{sexoController.prepareView}" icon="ui-icon-search"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" action="#{sexoController.prepareEdit}" icon="ui-icon-pencil"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" action="#{sexoController.destroy}" icon="ui-icon-trash"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <p:commandButton ajax="false" action="#{sexoController.prepareCreate}" value="#{bundle.ListSexoCreateLink}" icon="ui-icon-document"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

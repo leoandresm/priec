@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoUnidadOpticaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditTipoUnidadOpticaLabel_idUnidadOptica}" for="idUnidadOptica" />
+                        <p:inputText id="idUnidadOptica" value="#{tipoUnidadOpticaController.selected.idUnidadOptica}" title="#{bundle.EditTipoUnidadOpticaTitle_idUnidadOptica}" required="true" requiredMessage="#{bundle.EditTipoUnidadOpticaRequiredMessage_idUnidadOptica}"/>
+                        <h:outputLabel value="#{bundle.EditTipoUnidadOpticaLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{tipoUnidadOpticaController.selected.marca}" title="#{bundle.EditTipoUnidadOpticaTitle_marca}" required="true" requiredMessage="#{bundle.EditTipoUnidadOpticaRequiredMessage_marca}"/>
+                        <h:outputLabel value="#{bundle.EditTipoUnidadOpticaLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{tipoUnidadOpticaController.selected.tipo}" title="#{bundle.EditTipoUnidadOpticaTitle_tipo}" required="true" requiredMessage="#{bundle.EditTipoUnidadOpticaRequiredMessage_tipo}"/>
+                        <h:outputLabel value="#{bundle.EditTipoUnidadOpticaLabel_tecnologia}" for="tecnologia" />
+                        <p:inputText id="tecnologia" value="#{tipoUnidadOpticaController.selected.tecnologia}" title="#{bundle.EditTipoUnidadOpticaTitle_tecnologia}" required="true" requiredMessage="#{bundle.EditTipoUnidadOpticaRequiredMessage_tecnologia}"/>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{tipoUnidadOpticaController.update}" value="#{bundle.EditTipoUnidadOpticaSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditTipoUnidadOpticaViewLink}" icon="ui-icon-searh"/>
+
+                    <p:commandButton ajax="false" action="#{tipoUnidadOpticaController.prepareList}" value="#{bundle.EditTipoUnidadOpticaShowAllLink}" immediate="true" />
+
+                    <p:button outcome="/index" value="#{bundle.EditTipoUnidadOpticaIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Ingresar para registrar incidentes"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="loginPanelStyle" id="loginPanel">
+                <p:growl id="msgs" showDetail="false" sticky="false"/>                        
+                <p:panelGrid columns="2" >
+                    <f:facet name="header">
+                        INGRESAR
+                    </f:facet>
+                    <h:outputText value="Usuario: "></h:outputText>
+                    <p:inputText id="username" value="#{loginBean.username}" required="true" requiredMessage="Por favor ingrese el usuario!"/>
+
+                    <h:outputText value="Contraseña: "></h:outputText>
+                    <p:password id="password" value="#{loginBean.password}" required="true" requiredMessage="Por favor ingrese la contraseña!"/>
+                    <f:facet name="footer">
+                        <p:commandButton ajax="true" value="Ingresar" action="#{loginBean.login}"
+                                         type="submit" update="msgs"/> 
+                        &nbsp;
+                        <p:commandLink rendered="false" ajax="false" value="Olvido su Contraseña?"/>
+                    </f:facet> 
+                </p:panelGrid> 
+            </h:form>
+            <h:form styleClass="registrarPanelStyle" rendered="true">
+                <h:panelGrid columns="1" >
+                    <p:commandLink ajax="false" value="Registrarse" action="/usuario/Create?faces-redirect=true" 
+                                   actionListener="#{usuarioController.prepareCreate()}" 
+                                   style="font-size: small;"/>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

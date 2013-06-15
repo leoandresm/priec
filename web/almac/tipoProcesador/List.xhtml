@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoProcesadorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <div id="lista" align="center">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListTipoProcesadorEmpty}" rendered="#{tipoProcesadorController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{tipoProcesadorController.items.rowCount > 0}">
+                        <h:outputText value="#{tipoProcesadorController.pagination.pageFirstItem + 1}..#{tipoProcesadorController.pagination.pageLastItem + 1}/#{tipoProcesadorController.pagination.itemsCount}"/>&nbsp;
+                        <p:commandLink action="#{tipoProcesadorController.previous}" value="#{bundle.Previous} #{tipoProcesadorController.pagination.pageSize}" rendered="#{tipoProcesadorController.pagination.hasPreviousPage}"/>&nbsp;
+                        <p:commandLink action="#{tipoProcesadorController.next}" value="#{bundle.Next} #{tipoProcesadorController.pagination.pageSize}" rendered="#{tipoProcesadorController.pagination.hasNextPage}"/>&nbsp;
+                        <p:dataTable value="#{tipoProcesadorController.items}" var="item" rowStyleClass="jsfcrud_odd_row,jsfcrud_even_row" style="border:solid 1px">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoProcesadorTitle_idProcesador}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idProcesador}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoProcesadorTitle_marca}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.marca}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoProcesadorTitle_modelo}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.modelo}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoProcesadorTitle_velocidad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.velocidad}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <p:commandButton ajax="false" action="#{tipoProcesadorController.prepareView}" icon="ui-icon-search"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" action="#{tipoProcesadorController.prepareEdit}" icon="ui-icon-pencil"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{tipoProcesadorController.destroy}" icon="ui-icon-trash"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoProcesadorController.prepareCreate}" value="#{bundle.ListTipoProcesadorCreateLink}" icon="ui-icon-document"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

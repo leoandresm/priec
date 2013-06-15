@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>cupertino</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
+    </welcome-file-list>
+    <security-constraint>
+        <display-name>Admin Users</display-name>
+        <web-resource-collection>
+            <web-resource-name>Admin Users</web-resource-name>
+            <description>Administradores</description>
+            <url-pattern>/faces/admin/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Tecn users</web-resource-name>
+            <description>Tecnicos</description>
+            <url-pattern>/faces/tecn/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Almac users</web-resource-name>
+            <description>Almacenistas</description>
+            <url-pattern>/faces/almac/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>User users</web-resource-name>
+            <description>Usuarios</description>
+            <url-pattern>/faces/user/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Tecn Users</display-name>
+        <web-resource-collection>
+            <web-resource-name>Tecn users</web-resource-name>
+            <description>Tecnicos</description>
+            <url-pattern>/faces/tecn/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Almac users</web-resource-name>
+            <description>Almacenistas</description>
+            <url-pattern>/faces/almac/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>User users</web-resource-name>
+            <description>Usuarios</description>
+            <url-pattern>/faces/user/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>ADMIN</role-name>
+            <role-name>TECN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>User users</display-name>
+        <web-resource-collection>
+            <web-resource-name>User users</web-resource-name>
+            <description>Usuarios</description>
+            <url-pattern>/faces/user/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>USER</role-name>
+            <role-name>ADMIN</role-name>
+            <role-name>ALMAC</role-name>
+            <role-name>TECN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Almac Users</display-name>
+        <web-resource-collection>
+            <web-resource-name>Almac users</web-resource-name>
+            <description>Almacenistas</description>
+            <url-pattern>/faces/almac/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>User users</web-resource-name>
+            <description>Usuarios</description>
+            <url-pattern>/faces/user/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>ADMIN</role-name>
+            <role-name>TECN</role-name>
+            <role-name>ALMAC</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>priec-realm</realm-name>
+        <form-login-config>
+            <form-login-page>/index.xhtml</form-login-page>
+            <form-error-page>/index.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>Administradores</description>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <description>Usuarios</description>
+        <role-name>USER</role-name>
+    </security-role>
+    <security-role>
+        <description>Usuario Almacenista</description>
+        <role-name>ALMAC</role-name>
+    </security-role>
+    <security-role>
+        <description>Usuario Tecnico</description>
+        <role-name>TECN</role-name>
+    </security-role>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/faces/AccessDenied.xhtml</location>
+    </error-page>
+</web-app>

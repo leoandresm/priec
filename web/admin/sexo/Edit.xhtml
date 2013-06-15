@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSexoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditSexoLabel_idSexo}" for="idSexo" />
+                        <p:inputText id="idSexo" value="#{sexoController.selected.idSexo}" title="#{bundle.EditSexoTitle_idSexo}" required="true" requiredMessage="#{bundle.EditSexoRequiredMessage_idSexo}"/>
+                        <h:outputLabel value="#{bundle.EditSexoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{sexoController.selected.descripcion}" title="#{bundle.EditSexoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditSexoRequiredMessage_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{sexoController.update}" value="#{bundle.EditSexoSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditSexoViewLink}" icon="ui-icon-searh"/>
+
+                    <p:commandButton ajax="false" action="#{sexoController.prepareList}" value="#{bundle.EditSexoShowAllLink}" immediate="true" />
+
+                    <p:button outcome="/index" value="#{bundle.EditSexoIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

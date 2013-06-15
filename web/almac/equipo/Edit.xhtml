@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idEquipo}" for="idEquipo" />
+                        <p:inputText id="idEquipo" value="#{equipoController.selected.idEquipo}" title="#{bundle.EditEquipoTitle_idEquipo}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idEquipo}"/>
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{equipoController.selected.modelo}" title="#{bundle.EditEquipoTitle_modelo}" />
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_serial}" for="serial" />
+                        <p:inputText id="serial" value="#{equipoController.selected.serial}" title="#{bundle.EditEquipoTitle_serial}" />
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{equipoController.selected.observaciones}" title="#{bundle.EditEquipoTitle_observaciones}" />
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idSala}" for="idSala" />
+                        <p:selectOneMenu id="idSala" value="#{equipoController.selected.idSala}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idSala}">
+                            <f:selectItems value="#{salaController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idProcesador}" for="idProcesador" />
+                        <p:selectOneMenu id="idProcesador" value="#{equipoController.selected.idProcesador}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idProcesador}">
+                            <f:selectItems value="#{tipoProcesadorController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idMonitor}" for="idMonitor" />
+                        <p:selectOneMenu id="idMonitor" value="#{equipoController.selected.idMonitor}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idMonitor}">
+                            <f:selectItems value="#{tipoMonitorController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idMarcaEquipo}" for="idMarcaEquipo" />
+                        <p:selectOneMenu id="idMarcaEquipo" value="#{equipoController.selected.idMarcaEquipo}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idMarcaEquipo}">
+                            <f:selectItems value="#{marcaEquipoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idMouse}" for="idMouse" />
+                        <p:selectOneMenu id="idMouse" value="#{equipoController.selected.idMouse}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idMouse}">
+                            <f:selectItems value="#{tipoMouseController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idTeclado}" for="idTeclado" />
+                        <p:selectOneMenu id="idTeclado" value="#{equipoController.selected.idTeclado}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idTeclado}">
+                            <f:selectItems value="#{tipoTecladoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditEquipoLabel_idTipoEquipo}" for="idTipoEquipo" />
+                        <p:selectOneMenu id="idTipoEquipo" value="#{equipoController.selected.idTipoEquipo}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_idTipoEquipo}">
+                            <f:selectItems value="#{tipoEquipoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{equipoController.update}" value="#{bundle.EditEquipoSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditEquipoViewLink}" icon="ui-icon-searh"/>
+
+                    <p:commandButton ajax="false" action="#{equipoController.prepareList}" value="#{bundle.EditEquipoShowAllLink}" immediate="true" />
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

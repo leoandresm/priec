@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+
+    <h:body>
+        <script type="text/javascript">
+            PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+                dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D','L','M','X','J','V','S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText : 'Todo el día'
+            };
+        </script>
+        <p:layout fullPage="true" styleClass="jsfcrud_list_form">
+            <p:layoutUnit position="north" size="90" resizable="false" closable="false" collapsible="true">
+                <div id="cabecera">
+                    <div id="logo">
+                        <h:form>
+                            <h:commandLink action="/user/bienvenida">
+                                <h:graphicImage onclick="" width="240px" height="70px" name="uniminuto_logo.png" library="images" />
+                            </h:commandLink>
+                        </h:form>
+                    </div>
+                    <div id="titulo">
+                        <h2>
+                            <ui:insert name="title">Default Title</ui:insert>
+                        </h2>
+                    </div>
+                    <div id="login">
+                        <h:form>
+                            <p:panelGrid columns="1" style="text-align: center;">
+                                <h:outputLabel value="#{usuarioLogueadoController.selected.idRol.descripcion}"/>
+                                <h:outputLabel value="Usuario: #{usuarioLogueadoController.selected.idGenesisUniminuto}"/>
+                                <p:commandButton ajax="false" action="#{loginBean.logout}" value="Cerrar Sesión" />
+                            </p:panelGrid>
+                        </h:form>         
+                    </div>
+                </div>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="52" closable="true" collapsible="true">
+                <div id="cabecera">
+                    <div id="logo" style="font-size: 0.8em;">
+                        José Alexander Castañeda Muñoz - Leo Andrés Moreno Caicedo<br/>
+                        Tecnología en Sistemas<br/>
+                        Uniminuto - Unitolima
+                    </div>
+                    <div id="login">
+                        <h:graphicImage height="40px" id="logo_unitolima" name="unitolima_logo.jpg" library="images" />
+                    </div>
+                </div>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="160" header="Menú" collapsible="true">
+                <h:form>
+                    <p:panelMenu style="font-size: 0.8em;">
+                        <p:submenu label="Actualizar Datos Usuario">
+                            <p:menuitem outcome="/user/usuario/View" value="Ver Datos" title="Ver datos personales"/>
+                            <p:menuitem outcome="/user/usuario/Edit" value="Editar Datos" title="Editar datos personales"/>
+                            <p:menuitem outcome="/user/usuario/EditPass" value="Cambiar Contraseña" title="Cambiar contraseña"/>
+                        </p:submenu>  
+                        <p:submenu label="Registro Incidentes">
+                            <p:menuitem outcome="/tecn/incidente/List" rendered="#{usuarioLogueadoController.admin || usuarioLogueadoController.tecn}" value="Incidente" title="Consultar, Actualizar o Crear Inciedentes"/>  
+                            <p:menuitem outcome="/user/incidente/List" rendered="#{usuarioLogueadoController.user || usuarioLogueadoController.almac}" value="Incidente" title="Consultar, Actualizar o Crear Inciedentes"/>  
+                            <p:menuitem outcome="/user/solucion/List" rendered="false" value="Solución a Incidente" title="Consultar, Actualizar o Crear Soluciones a Incidentes"/>
+                        </p:submenu>
+                        <p:submenu label="Registro Equipos" rendered="#{usuarioLogueadoController.admin || usuarioLogueadoController.tecn || usuarioLogueadoController.almac}" >
+                            <p:menuitem outcome="/almac/equipo/List" value="Equipo" title="Consultar, Actualizar o Crear Equipos"/>                       
+                            <p:menuitem outcome="/almac/marcaEquipo/List" value="Marca Equipo" title="Consultar, Actualizar o Crear Marcas de Equipos"/>                        
+                            <p:menuitem outcome="/almac/tipoDisco/List" value="Disco Duro" title="Consultar, Actualizar o Crear Discos Duros"/>
+                            <p:menuitem outcome="/almac/tipoEquipo/List" value="Tipo Equipo" title="Consultar, Actualizar o Crear Tipos de Equipos"/>
+                            <p:menuitem outcome="/almac/tipoFalla/List" value="Fallas Comunes" title="Consultar, Actualizar o Crear Fallas Comunes"/>
+                            <p:menuitem outcome="/almac/tipoMemoria/List" value="Memoria" title="Consultar, Actualizar o Crear Memorias"/>
+                            <p:menuitem outcome="/almac/tipoMonitor/List" value="Monitor" title="Consultar, Actualizar o Crear Monitores"/>
+                            <p:menuitem outcome="/almac/tipoMouse/List" value="Mouse" title="Consultar, Actualizar o Crear Mouses"/>
+                            <p:menuitem outcome="/almac/tipoProcesador/List" value="Procesador" title="Consultar, Actualizar o Crear Procesadores"/>
+                            <p:menuitem outcome="/almac/tipoTeclado/List" value="Teclado" title="Consultar, Actualizar o Crear Teclados"/>
+                            <p:menuitem outcome="/almac/tipoUnidadOptica/List" value="Unidad Optica" title="Consultar, Actualizar o Crear Unidades Opticas"/>
+                        </p:submenu>
+                        <p:submenu label="Registro Sedes" rendered="#{usuarioLogueadoController.admin || usuarioLogueadoController.tecn || usuarioLogueadoController.almac}">
+                            <p:menuitem outcome="/almac/sede/List" value="Sede" title="Consultar, Actualizar o Crear Sedes"/>
+                            <p:menuitem outcome="/almac/sala/List" value="Sala" title="Consultar, Actualizar o Crear Salas"/>
+                        </p:submenu>
+                        <p:submenu label="Registro Usuarios" rendered="#{usuarioLogueadoController.admin}">
+                            <p:menuitem outcome="/admin/usuario/List" value="Usuario" title="Consultar, Actualizar o Crear Usuarios"/>  
+                            <p:menuitem outcome="/admin/programaAcademico/List" value="Programa Academico" title="Consultar, Actualizar o Crear Programas Acádemicos"/>
+                            <p:menuitem outcome="/admin/roles/List" value="Roles" title="Consultar, Actualizar o Crear Roles"/>
+                            <p:menuitem outcome="/admin/sexo/List" value="Sexo" title="Consultar, Actualizar o Crear Sexos"/>    
+                            <p:menuitem outcome="/admin/tipoUsuario/List" value="Tipo Usuario" title="Consultar, Actualizar o Crear Tipos de Usuarios"/>
+                        </p:submenu>
+                        <p:submenu label="Reportes Incidentes" rendered="#{usuarioLogueadoController.admin || usuarioLogueadoController.tecn}">
+                            <p:menuitem outcome="/tecn/incidente/ListReports" value="Reporte Incidentes" title="Consultar Inciedentes"/>  
+                        </p:submenu>                       
+                    </p:panelMenu>
+                </h:form>                
+            </p:layoutUnit>
+
+            <p:layoutUnit id="centerContentPanel" rendered="true" position="center" styleClass="body">
+
+                <ui:insert name="body">Default Body</ui:insert>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

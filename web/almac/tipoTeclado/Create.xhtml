@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTipoTecladoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>            
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateTipoTecladoLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{tipoTecladoController.selected.marca}" title="#{bundle.CreateTipoTecladoTitle_marca}" required="true" requiredMessage="#{bundle.CreateTipoTecladoRequiredMessage_marca}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoTecladoLabel_tecnologia}" for="tecnologia" />
+                        <p:inputText id="tecnologia" value="#{tipoTecladoController.selected.tecnologia}" title="#{bundle.CreateTipoTecladoTitle_tecnologia}" required="true" requiredMessage="#{bundle.CreateTipoTecladoRequiredMessage_tecnologia}"/>
+                    </p:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoTecladoController.create}" value="#{bundle.CreateTipoTecladoSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoTecladoController.prepareList}" value="#{bundle.CreateTipoTecladoShowAllLink}" immediate="true"/>
+
+                    <p:button outcome="/index" value="#{bundle.CreateTipoTecladoIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

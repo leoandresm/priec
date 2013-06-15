@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoMouseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditTipoMouseLabel_idMouse}" for="idMouse" />
+                        <p:inputText id="idMouse" value="#{tipoMouseController.selected.idMouse}" title="#{bundle.EditTipoMouseTitle_idMouse}" required="true" requiredMessage="#{bundle.EditTipoMouseRequiredMessage_idMouse}"/>
+                        <h:outputLabel value="#{bundle.EditTipoMouseLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{tipoMouseController.selected.marca}" title="#{bundle.EditTipoMouseTitle_marca}" required="true" requiredMessage="#{bundle.EditTipoMouseRequiredMessage_marca}"/>
+                        <h:outputLabel value="#{bundle.EditTipoMouseLabel_tecnologia}" for="tecnologia" />
+                        <p:inputText id="tecnologia" value="#{tipoMouseController.selected.tecnologia}" title="#{bundle.EditTipoMouseTitle_tecnologia}" required="true" requiredMessage="#{bundle.EditTipoMouseRequiredMessage_tecnologia}"/>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{tipoMouseController.update}" value="#{bundle.EditTipoMouseSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditTipoMouseViewLink}" icon="ui-icon-searh"/>
+
+                    <p:commandButton ajax="false" action="#{tipoMouseController.prepareList}" value="#{bundle.EditTipoMouseShowAllLink}" immediate="true" />
+
+                    <p:button outcome="/index" value="#{bundle.EditTipoMouseIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

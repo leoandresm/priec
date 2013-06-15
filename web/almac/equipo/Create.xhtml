@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>        
+                <p:growl id="msgs" showDetail="false" sticky="false"/>                
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:row><p:column colspan="3">DATOS EQUIPO</p:column></p:row>                            
+                        </f:facet>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idTipoEquipo}" for="idTipoEquipo" />
+                        <p:selectOneMenu id="idTipoEquipo" value="#{equipoController.selected.idTipoEquipo}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_idTipoEquipo}">
+                            <f:selectItems value="#{tipoEquipoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idMarcaEquipo}" for="idMarcaEquipo" />
+                        <p:selectOneMenu id="idMarcaEquipo" value="#{equipoController.selected.idMarcaEquipo}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_idMarcaEquipo}">
+                            <f:selectItems value="#{marcaEquipoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{equipoController.selected.modelo}" title="#{bundle.CreateEquipoTitle_modelo}" />
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_serial}" for="serial" />
+                        <p:inputText id="serial" value="#{equipoController.selected.serial}" title="#{bundle.CreateEquipoTitle_serial}" />
+                        <h:outputLabel value="#{bundle.CreateSedeLabel_idSede}" for="idSede" />
+                        <p:selectOneMenu id="idSede" value="#{salaController.selected.idSede}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_idSala}">
+                            <f:selectItems value="#{sedeController.itemsAvailableSelectOne}"/>
+                            <p:ajax update="idSala"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idSala}" for="idSala" />
+                        <p:selectOneMenu id="idSala" value="#{equipoController.selected.idSala}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_idSala}">
+                            <f:selectItems value="#{salaController.itemsAvailableSelectOneBySede}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_observaciones}" for="observaciones" />
+                        <p:inputTextarea id="observaciones" value="#{equipoController.selected.observaciones}" title="#{bundle.CreateEquipoTitle_observaciones}" />
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idEstadoEquipo}" for="idEstadoEquipo" />
+                        <p:selectOneMenu id="idEstadoEquipo" value="#{equipoController.selected.idEstadoEquipo}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_idEstadoEquipo}">
+                            <f:selectItems value="#{estadoEquipoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>                     
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idMonitor}" for="idMonitor" />
+                        <p:selectOneMenu id="idMonitor" value="#{equipoController.selected.idMonitor}">
+                            <f:selectItems value="#{tipoMonitorController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idMouse}" for="idMouse" />
+                        <p:selectOneMenu id="idMouse" value="#{equipoController.selected.idMouse}">
+                            <f:selectItems value="#{tipoMouseController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idTeclado}" for="idTeclado" />
+                        <p:selectOneMenu id="idTeclado" value="#{equipoController.selected.idTeclado}">
+                            <f:selectItems value="#{tipoTecladoController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateEquipoLabel_idProcesador}" for="idProcesador" />
+                        <p:selectOneMenu id="idProcesador" value="#{equipoController.selected.idProcesador}" required="true" requiredMessage="#{bundle.CreateEquipoRequiredMessage_idProcesador}">
+                            <f:selectItems value="#{tipoProcesadorController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{equipoController.create}" value="#{bundle.CreateEquipoSaveLink}" icon="ui-icon-disk"/>
+                </div>    
+            </h:form>
+            <br />
+            <p:panel header="Memoria Ram">
+                <h:form id="memoriasForm">                    
+                    <div id="formularioMemoria" align="center">
+                        <p:panelGrid columns="7">
+                            <h:outputLabel value="#{bundle.CreateEquipoHasTipoMemoriaLabel_tipoMemoria}" for="tipoMemoria" />
+                            <p:selectOneMenu id="tipoMemoria" value="#{equipoController.memoriaSelected.tipoMemoria}" required="true" requiredMessage="#{bundle.CreateEquipoHasTipoMemoriaRequiredMessage_tipoMemoria}">
+                                <f:selectItems value="#{tipoMemoriaController.itemsAvailableSelectOne}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateEquipoHasTipoMemoriaLabel_cantidad}" for="cantidad" />
+                            <p:inputText id="cantidad" value="#{equipoController.memoriaSelected.cantidad}" title="#{bundle.CreateEquipoHasTipoMemoriaTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateEquipoHasTipoMemoriaRequiredMessage_cantidad}"/>
+                            <p:commandButton actionListener="#{equipoController.addMemoria}" value="#{bundle.CreateEquipoHasTipoMemoriaSaveLink}" update="tablaMemorias" icon="ui-icon-disk"/>
+                        </p:panelGrid>
+                        <br/>
+                        <p:dataTable value="#{equipoController.listMemorias}" var="item" 
+                                     style="border:solid 1px" id="tablaMemorias" >
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListEquipoHasTipoMemoriaTitle_tipoMemoria}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tipoMemoria.toString()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListEquipoHasTipoMemoriaTitle_cantidad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cantidad}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form> 
+            </p:panel>
+            <br />
+            <p:panel header="Disco Duro">
+                <h:form id="discoForm">                    
+                    <div id="formularioDisco" align="center">
+                        <p:panelGrid columns="7">
+                            <h:outputLabel value="#{bundle.CreateEquipoHasTipoDiscoLabel_tipoDisco}" for="tipoDisco" />
+                            <p:selectOneMenu id="tipoDisco" value="#{equipoController.discoSelected.tipoDisco}" required="true" requiredMessage="#{bundle.CreateEquipoHasTipoDiscoRequiredMessage_tipoDisco}">
+                                <f:selectItems value="#{tipoDiscoController.itemsAvailableSelectOne}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateEquipoHasTipoDiscoLabel_cantidad}" for="cantidad" />
+                            <p:inputText id="cantidad" value="#{equipoController.discoSelected.cantidad}" title="#{bundle.CreateEquipoHasTipoDiscoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateEquipoHasTipoDiscoRequiredMessage_cantidad}"/>
+                            <p:commandButton actionListener="#{equipoController.addDisco}" value="#{bundle.CreateEquipoHasTipoDiscoSaveLink}" update="tablaDiscos" icon="ui-icon-disk"/>
+                        </p:panelGrid>
+                        <br/>
+                        <p:dataTable value="#{equipoController.listDiscos}" var="item" 
+                                     style="border:solid 1px" id="tablaDiscos" >
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListEquipoHasTipoDiscoTitle_tipoDisco}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tipoDisco.toString()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListEquipoHasTipoDiscoTitle_cantidad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cantidad}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form> 
+            </p:panel>
+            <br />
+            <p:panel header="Unidad Optica">
+                <h:form id="unidadForm">                    
+                    <div id="formularioUnidad" align="center">
+                        <p:panelGrid columns="7">
+                            <h:outputLabel value="#{bundle.CreateEquipoHasTipoUnidadOpticaLabel_tipoUnidadOptica}" for="tipoUnidadOptica" />
+                            <p:selectOneMenu id="tipoUnidadOptica" value="#{equipoController.unidadSelected.tipoUnidadOptica}" required="true" requiredMessage="#{bundle.CreateEquipoHasTipoUnidadOpticaRequiredMessage_tipoUnidadOptica}">
+                                <f:selectItems value="#{tipoUnidadOpticaController.itemsAvailableSelectOne}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateEquipoHasTipoUnidadOpticaLabel_cantidad}" for="cantidad" />
+                            <p:inputText id="cantidad" value="#{equipoController.unidadSelected.cantidad}" title="#{bundle.CreateEquipoHasTipoUnidadOpticaTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateEquipoHasTipoUnidadOpticaRequiredMessage_cantidad}"/>
+                            <p:commandButton actionListener="#{equipoController.addUnidad}" value="#{bundle.CreateEquipoHasTipoUnidadOpticaSaveLink}" update="tablaUnidades" icon="ui-icon-disk"/>
+                        </p:panelGrid>
+                        <br/>
+                        <p:dataTable value="#{equipoController.listUnidades}" var="item" 
+                                     style="border:solid 1px" id="tablaUnidades" >
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListEquipoHasTipoUnidadOpticaTitle_tipoUnidadOptica}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tipoUnidadOptica.toString()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListEquipoHasTipoUnidadOpticaTitle_cantidad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cantidad}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form> 
+            </p:panel>
+            <br />
+            <h:form id="botones">
+                <div align="center">                
+                <p:commandButton ajax="false" action="#{equipoController.prepareList}" value="#{bundle.CreateEquipoShowAllLink}" immediate="true"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

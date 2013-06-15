@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMarcaEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditMarcaEquipoLabel_idMarcaEquipo}" for="idMarcaEquipo" />
+                        <p:inputText id="idMarcaEquipo" value="#{marcaEquipoController.selected.idMarcaEquipo}" title="#{bundle.EditMarcaEquipoTitle_idMarcaEquipo}" required="true" requiredMessage="#{bundle.EditMarcaEquipoRequiredMessage_idMarcaEquipo}"/>
+                        <h:outputLabel value="#{bundle.EditMarcaEquipoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{marcaEquipoController.selected.descripcion}" title="#{bundle.EditMarcaEquipoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditMarcaEquipoRequiredMessage_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{marcaEquipoController.update}" value="#{bundle.EditMarcaEquipoSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditMarcaEquipoViewLink}" icon="ui-icon-searh"/>
+
+                    <p:commandButton ajax="false" action="#{marcaEquipoController.prepareList}" value="#{bundle.EditMarcaEquipoShowAllLink}" immediate="true" />
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

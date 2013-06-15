@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/#{loginBean.menu}/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:growl id="msgs" showDetail="false" sticky="false"/>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:row><p:column>DATOS USUARIO</p:column></p:row>                            
+                        </f:facet>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_idGenesisUniminuto}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.idGenesisUniminuto}" title="#{bundle.ViewUsuarioTitle_idGenesisUniminuto}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_nombres}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.nombres}" title="#{bundle.ViewUsuarioTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_primeraPellido}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.primeraPellido}" title="#{bundle.ViewUsuarioTitle_primeraPellido}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_segundoApellido}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.segundoApellido}" title="#{bundle.ViewUsuarioTitle_segundoApellido}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_email}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.email}" title="#{bundle.ViewUsuarioTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_telefono}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.telefono}" title="#{bundle.ViewUsuarioTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_idSexo}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.idSexo.toString()}" title="#{bundle.ViewUsuarioTitle_idSexo}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_idTipoUsuario}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.idTipoUsuario.toString()}" title="#{bundle.ViewUsuarioTitle_idTipoUsuario}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_idProgramaAcademico}" rendered="#{usuarioLogueadoController.estudiante}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.idProgramaAcademico.toString()}" rendered="#{usuarioLogueadoController.estudiante}" title="#{bundle.ViewUsuarioTitle_idProgramaAcademico}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_idRol}"/>
+                        <h:outputText value="#{usuarioLogueadoController.selected.idRol.toString()}" title="#{bundle.ViewUsuarioTitle_idRol}"/>
+                    </p:panelGrid>
+                    <br/>
+
+                    <p:button outcome="Edit" value="#{bundle.ViewUsuarioEditLink}" icon="ui-icon-pencil"/>
+                    <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{usuarioController.prepareCreate}" value="#{bundle.ViewUsuarioCreateLink}" icon="ui-icon-document"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

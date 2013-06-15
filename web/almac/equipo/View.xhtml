@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid id="display" columns="2">  
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idEquipo}"/>
+                        <h:outputText value="#{equipoController.selected.idEquipo}" title="#{bundle.ViewEquipoTitle_idEquipo}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_modelo}"/>
+                        <h:outputText value="#{equipoController.selected.modelo}" title="#{bundle.ViewEquipoTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_serial}"/>
+                        <h:outputText value="#{equipoController.selected.serial}" title="#{bundle.ViewEquipoTitle_serial}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_observaciones}"/>
+                        <h:outputText value="#{equipoController.selected.observaciones}" title="#{bundle.ViewEquipoTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idSala}"/>
+                        <h:outputText value="#{equipoController.selected.idSala.toString()}" title="#{bundle.ViewEquipoTitle_idSala}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idProcesador}"/>
+                        <h:outputText value="#{equipoController.selected.idProcesador.toString()}" title="#{bundle.ViewEquipoTitle_idProcesador}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idMonitor}"/>
+                        <h:outputText value="#{equipoController.selected.idMonitor.toString()}" title="#{bundle.ViewEquipoTitle_idMonitor}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idMarcaEquipo}"/>
+                        <h:outputText value="#{equipoController.selected.idMarcaEquipo.toString()}" title="#{bundle.ViewEquipoTitle_idMarcaEquipo}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idMouse}"/>
+                        <h:outputText value="#{equipoController.selected.idMouse.toString()}" title="#{bundle.ViewEquipoTitle_idMouse}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idTeclado}"/>
+                        <h:outputText value="#{equipoController.selected.idTeclado.toString()}" title="#{bundle.ViewEquipoTitle_idTeclado}"/>
+                        <h:outputText value="#{bundle.ViewEquipoLabel_idTipoEquipo}"/>
+                        <h:outputText value="#{equipoController.selected.idTipoEquipo.toString()}" title="#{bundle.ViewEquipoTitle_idTipoEquipo}"/>
+                    </p:panelGrid>  
+                    <br />
+
+                    <p:button outcome="Edit" value="#{bundle.ViewEquipoEditLink}" icon="ui-icon-pencil"/>
+                    <p:commandButton ajax="false" action="#{equipoController.prepareCreate}" value="#{bundle.ViewEquipoCreateLink}" icon="ui-icon-document"/>
+                    <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{equipoController.destroyAndView}" value="#{bundle.ViewEquipoDestroyLink}" icon="ui-icon-trash"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{equipoController.prepareList}" value="#{bundle.ViewEquipoShowAllLink}"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

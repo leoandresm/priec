@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSexoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewSexoLabel_idSexo}"/>
+                        <h:outputText value="#{sexoController.selected.idSexo}" title="#{bundle.ViewSexoTitle_idSexo}"/>
+                        <h:outputText value="#{bundle.ViewSexoLabel_descripcion}"/>
+                        <h:outputText value="#{sexoController.selected.descripcion}" title="#{bundle.ViewSexoTitle_descripcion}"/>
+                    </p:panelGrid>
+                    <br />
+
+                    <p:button outcome="Edit" value="#{bundle.ViewSexoEditLink}" icon="ui-icon-pencil"/>
+                    <p:commandButton ajax="false" action="#{sexoController.prepareCreate}" value="#{bundle.ViewSexoCreateLink}" icon="ui-icon-document"/>
+                    <p:commandButton ajax="false" action="#{sexoController.destroyAndView}" value="#{bundle.ViewSexoDestroyLink}" icon="ui-icon-trash"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{sexoController.prepareList}" value="#{bundle.ViewSexoShowAllLink}"/>
+                    <p:button outcome="/index" value="#{bundle.ViewSexoIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoMemoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewTipoMemoriaLabel_idMemoria}"/>
+                        <h:outputText value="#{tipoMemoriaController.selected.idMemoria}" title="#{bundle.ViewTipoMemoriaTitle_idMemoria}"/>
+                        <h:outputText value="#{bundle.ViewTipoMemoriaLabel_marca}"/>
+                        <h:outputText value="#{tipoMemoriaController.selected.marca}" title="#{bundle.ViewTipoMemoriaTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewTipoMemoriaLabel_velocidadFsb}"/>
+                        <h:outputText value="#{tipoMemoriaController.selected.velocidadFsb}" title="#{bundle.ViewTipoMemoriaTitle_velocidadFsb}"/>
+                        <h:outputText value="#{bundle.ViewTipoMemoriaLabel_capacidad}"/>
+                        <h:outputText value="#{tipoMemoriaController.selected.capacidad}" title="#{bundle.ViewTipoMemoriaTitle_capacidad}"/>
+                        <h:outputText value="#{bundle.ViewTipoMemoriaLabel_tecnologia}"/>
+                        <h:outputText value="#{tipoMemoriaController.selected.tecnologia}" title="#{bundle.ViewTipoMemoriaTitle_tecnologia}"/>
+                    </p:panelGrid>
+                    <br />
+
+                    <p:button outcome="Edit" value="#{bundle.ViewTipoMemoriaEditLink}" icon="ui-icon-pencil"/>
+                    <p:commandButton ajax="false" action="#{tipoMemoriaController.prepareCreate}" value="#{bundle.ViewTipoMemoriaCreateLink}" icon="ui-icon-document"/>
+                    <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{tipoMemoriaController.destroyAndView}" value="#{bundle.ViewTipoMemoriaDestroyLink}" icon="ui-icon-trash"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoMemoriaController.prepareList}" value="#{bundle.ViewTipoMemoriaShowAllLink}"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

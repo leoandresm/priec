@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:growl id="msgs" showDetail="false" sticky="false"/>
+                <div id="formulario" align="center">
+                    <p:panelGrid>
+                        <f:facet name="header">
+                            <p:row><p:column colspan="3">DATOS USUARIO</p:column></p:row>                            
+                        </f:facet>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_idGenesisUniminuto}" for="idGenesisUniminuto" />
+                            </p:column>
+                            <p:column style="border-right: white">
+                                <p:inputText id="idGenesisUniminuto" value="#{usuarioLogueadoController.selected.idGenesisUniminuto}" title="#{bundle.EditUsuarioTitle_idGenesisUniminuto}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_idGenesisUniminuto}"/>
+                            </p:column>
+                            <p:column style="border-left: white;">
+                                <p:message for="idGenesisUniminuto"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_nombres}" for="nombres" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="nombres" value="#{usuarioLogueadoController.selected.nombres}" title="#{bundle.EditUsuarioTitle_nombres}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_nombres}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="nombres" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_primeraPellido}" for="primeraPellido" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="primeraPellido" value="#{usuarioLogueadoController.selected.primeraPellido}" title="#{bundle.EditUsuarioTitle_primeraPellido}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_primeraPellido}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="primeraPellido" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_segundoApellido}" for="segundoApellido" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="segundoApellido" value="#{usuarioLogueadoController.selected.segundoApellido}" title="#{bundle.EditUsuarioTitle_segundoApellido}" />
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="segundoApellido" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_email}" for="email" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="email" value="#{usuarioLogueadoController.selected.email}" title="#{bundle.EditUsuarioTitle_email}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_email}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="email" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_telefono}" for="telefono" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="telefono" value="#{usuarioLogueadoController.selected.telefono}" title="#{bundle.EditUsuarioTitle_telefono}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_telefono}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="telefono" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_idSexo}" for="idSexo" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="idSexo" value="#{usuarioLogueadoController.selected.idSexo}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_idSexo}">
+                                    <f:selectItems value="#{sexoController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idSexo" />
+                            </p:column>
+                        </p:row>                           
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_idTipoUsuario}" for="idTipoUsuario" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="idTipoUsuario" value="#{usuarioLogueadoController.selected.idTipoUsuario}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_idTipoUsuario}">
+                                    <f:selectItems value="#{tipoUsuarioController.itemsAvailableSelectOne}"/>
+                                    <p:ajax update="idProgramaAcademico"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idTipoUsuario" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditUsuarioLabel_idProgramaAcademico}" for="idProgramaAcademico" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="idProgramaAcademico" value="#{usuarioLogueadoController.selected.idProgramaAcademico}" disabled="#{!usuarioLogueadoController.estudiante}" required="#{usuarioLogueadoController.estudiante}" requiredMessage="#{bundle.EditUsuarioRequiredMessage_idProgramaAcademico}">
+                                    <f:selectItems value="#{programaAcademicoController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idProgramaAcademico" />
+                            </p:column>
+                        </p:row>
+                        <p:row rendered="#{usuarioLogueadoController.admin}">
+                            <p:column>
+                                <h:outputLabel rendered="#{usuarioLogueadoController.admin}" value="#{bundle.CreateUsuarioLabel_idRol}" for="idRol" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu rendered="#{usuarioLogueadoController.admin}" id="idRol" value="#{usuarioLogueadoController.selected.idRol}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idRol}">
+                                    <f:selectItems value="#{rolesController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>  
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message rendered="#{usuarioLogueadoController.admin}" for="idRol" />
+                            </p:column>
+                        </p:row>        
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton ajax="false" action="#{usuarioLogueadoController.update}" value="#{bundle.EditUsuarioSaveLink}" icon="ui-icon-disk"/>
+
+                    <p:commandButton ajax="false" action="View" value="#{bundle.EditUsuarioViewLink}" icon="ui-icon-searh"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

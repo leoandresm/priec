@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditIncidenteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:growl id="msgs" showDetail="false" sticky="false"/>
+                <div id="formulario" align="center">
+                    <p:panelGrid>
+                        <f:facet name="header">
+                            <p:row><p:column colspan="3">DATOS INCIDENTE</p:column></p:row>                            
+                        </f:facet>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditIncidenteLabel_idIncidente}" for="idIncidente" />
+                            </p:column>
+                            <p:column style="border-right: white">                            
+                                <h:outputText id="idIncidente" value="#{incidenteController.selected.idIncidente}"/>
+                            </p:column>
+                            <p:column style="border-left: white;">
+                                <p:message for="idIncidente"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditIncidenteLabel_fechaReporte}" for="fechaReporte" />
+                            </p:column>
+                            <p:column style="border-right: white">
+                                <h:outputText id="fechaReporte" value="#{incidenteController.selected.fechaReporte}" title="#{bundle.EditIncidenteTitle_fechaReporte}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column style="border-left: white;">
+                                <p:message for="fechaReporte"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column> 
+                                <h:outputLabel value="#{bundle.EditIncidenteLabel_idUsuario}" for="idUsuario" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <h:outputText id="idUsuario" value="#{incidenteController.selected.idUsuario.toString()}">
+                                    <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idUsuario" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column> 
+                                <h:outputLabel value="#{bundle.EditIncidenteLabel_idTipoFalla}" for="idTipoFalla" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="idTipoFalla" value="#{incidenteController.selected.idTipoFalla}" required="true" requiredMessage="#{bundle.EditIncidenteRequiredMessage_idTipoFalla}">
+                                    <f:selectItems value="#{tipoFallaController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idTipoFalla" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditSedeLabel_idSede}" for="idSede" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <h:outputText id="idSede" value="#{incidenteController.selected.idEquipo.idSala.idSede.toString()}"/>                                    
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idSede" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditEquipoLabel_idSala}" for="idSala" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <h:outputText id="idSala" value="#{incidenteController.selected.idEquipo.idSala.toString()}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idSala" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditIncidenteLabel_idEquipo}" for="idEquipo" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <h:outputText id="idEquipo" value="#{incidenteController.selected.idEquipo.toString()}"/>                                    
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="idEquipo" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditIncidenteLabel_descripcionIncidente}" for="descripcionIncidente" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:inputText id="descripcionIncidente" value="#{incidenteController.selected.descripcionIncidente}" title="#{bundle.EditIncidenteTitle_descripcionIncidente}" required="true" requiredMessage="#{bundle.EditIncidenteRequiredMessage_descripcionIncidente}"/>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="descripcionIncidente" />
+                            </p:column>
+                        </p:row> 
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{bundle.EditIncidenteLabel_idEstadoIncidente}" for="estadoIncidente" />
+                            </p:column>
+                            <p:column style="border-right: white;">
+                                <p:selectOneMenu id="estadoIncidente" value="#{incidenteController.selected.idEstadoIncidente}" required="true" requiredMessage="#{bundle.EditIncidenteRequiredMessage_idEstadoIncidente}">
+                                    <f:selectItems value="#{estadoIncidenteController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column style="border-left: white">
+                                <p:message for="estadoIncidente" />
+                            </p:column>
+                        </p:row>  
+                    </p:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{incidenteController.update}" value="#{bundle.EditIncidenteSaveLink}" icon="ui-icon-disk"/>
+                    <p:commandButton id="agregarSolucion" value="Agregar Solución" actionListener="#{incidenteController.prepareCreateSolucion}" oncomplete="dglSolucion.show();" update=":agregarSolucionForm" /> 
+                    <p:commandButton ajax="false" action="/user/incidente/View" value="#{bundle.EditIncidenteViewLink}" icon="ui-icon-searh"/>
+                    <br />
+                    <br />
+                    <h:panelGroup >
+                        <p:dataTable value="#{incidenteController.lazyModelSolucion}"                                      
+                                     var="item" 
+                                     paginator="true" rows="5"
+                                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} 
+                                     {CurrentPageReport} {NextPageLink} {LastPageLink}" 
+                                     rowsPerPageTemplate="5,10,15" 
+                                     lazy="true"
+                                     emptyMessage="No se encontraron soluciones para este incidente"
+                                     widgetVar="solucionesTable">  
+
+                            <f:facet name="header">
+                                <h:outputText value="SOLUCIONES"/>
+                            </f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListSolucionTitle_fechaSolucion}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaSolucion}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListSolucionTitle_descripcionSolucion}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcionSolucion}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListSolucionTitle_idUsuarioTecnico}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idUsuarioTecnico.toString()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <p:commandButton id="editarSolucion" actionListener="#{incidenteController.prepareEditSolucion}" oncomplete="dglEditSolucion.show();" update=":editarSolucionForm"  icon="ui-icon-pencil"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{incidenteController.destroySolucion}" icon="ui-icon-trash"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <p:commandButton ajax="false" action="#{incidenteController.prepareList}" value="#{bundle.EditIncidenteShowAllLink}" immediate="true" />
+
+                </div>
+            </h:form>
+            <p:dialog id="solucion" header="Solución" widgetVar="dglSolucion" showEffect="puff" hideEffect="explode">
+                <h:form id="agregarSolucionForm">
+                    <p:growl id="msgs" showDetail="false" sticky="false"/>               
+                    <div id="formulario" align="center">
+                        <p:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.CreateSolucionLabel_fechaSolucion}" for="fechaSolucion" />
+                            <h:outputText id="fechaSolucion" value="#{incidenteController.solucionSelected.fechaSolucion}" title="#{bundle.CreateSolucionTitle_fechaSolucion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputLabel value="#{bundle.CreateSolucionLabel_idIncidente}" for="idIncidente" />
+                            <h:outputText id="idIncidente" value="#{incidenteController.solucionSelected.idIncidente}">
+                            </h:outputText>
+                            <h:outputLabel value="#{bundle.CreateSolucionLabel_idUsuarioTecnico}" for="idUsuarioTecnico" />
+                            <h:outputText id="idUsuarioTecnico" value="#{incidenteController.solucionSelected.idUsuarioTecnico.toString()}">
+                            </h:outputText>
+                            <h:outputLabel value="#{bundle.CreateSolucionLabel_descripcionSolucion}" for="descripcionSolucion" />
+                            <p:inputTextarea id="descripcionSolucion" value="#{incidenteController.solucionSelected.descripcionSolucion}" title="#{bundle.CreateSolucionTitle_descripcionSolucion}" required="true" requiredMessage="#{bundle.CreateSolucionRequiredMessage_descripcionSolucion}"/>
+                        </p:panelGrid>
+                        <br />
+                        <p:commandButton ajax="false" action="#{incidenteController.createSolucion}" value="#{bundle.CreateSolucionSaveLink}" icon="ui-icon-disk"/>
+                        <p:commandButton type="reset" ajax="false" value="Cancelar" onclick="dglSolucion.hide();"/>
+                    </div>
+                </h:form>
+            </p:dialog>
+            <p:dialog id="editarSolucion" header="Solución" widgetVar="dglEditSolucion" showEffect="puff" hideEffect="explode">
+                <h:form id="editarSolucionForm">
+                    <div id="formulario" align="center">
+                        <p:panelGrid columns="2">
+                            <h:outputLabel value="#{bundle.EditSolucionLabel_fechaSolucion}" for="fechaSolucion" />
+                            <h:outputText id="fechaSolucion" value="#{incidenteController.solucionSelected.fechaSolucion}" title="#{bundle.EditSolucionTitle_fechaSolucion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputLabel value="#{bundle.EditSolucionLabel_idIncidente}" for="idIncidente" />
+                            <h:outputText id="idIncidente" value="#{incidenteController.solucionSelected.idIncidente}">
+                            </h:outputText>
+                            <h:outputLabel value="#{bundle.EditSolucionLabel_idUsuarioTecnico}" for="idUsuarioTecnico" />
+                            <h:outputText id="idUsuarioTecnico" value="#{incidenteController.solucionSelected.idUsuarioTecnico.toString()}">
+                             </h:outputText>
+                            <h:outputLabel value="#{bundle.EditSolucionLabel_descripcionSolucion}" for="descripcionSolucion" />
+                            <p:inputTextarea id="descripcionSolucion" value="#{incidenteController.solucionSelected.descripcionSolucion}" title="#{bundle.EditSolucionTitle_descripcionSolucion}" required="true" requiredMessage="#{bundle.EditSolucionRequiredMessage_descripcionSolucion}"/>
+                        </p:panelGrid>
+                        <p:commandButton ajax="false" action="#{incidenteController.updateSolucion()}" value="#{bundle.EditSolucionSaveLink}" icon="ui-icon-disk"/>
+                        <p:commandButton type="reset" ajax="false" value="Cancelar" onclick="dglEditSolucion.hide();"/>
+                    </div>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTipoDiscoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>            
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateTipoDiscoLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{tipoDiscoController.selected.marca}" title="#{bundle.CreateTipoDiscoTitle_marca}" required="true" requiredMessage="#{bundle.CreateTipoDiscoRequiredMessage_marca}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoDiscoLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{tipoDiscoController.selected.modelo}" title="#{bundle.CreateTipoDiscoTitle_modelo}" required="true" requiredMessage="#{bundle.CreateTipoDiscoRequiredMessage_modelo}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoDiscoLabel_velocidad}" for="velocidad" />
+                        <p:inputText id="velocidad" value="#{tipoDiscoController.selected.velocidad}" title="#{bundle.CreateTipoDiscoTitle_velocidad}" required="true" requiredMessage="#{bundle.CreateTipoDiscoRequiredMessage_velocidad}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoDiscoLabel_capacidad}" for="capacidad" />
+                        <p:inputText id="capacidad" value="#{tipoDiscoController.selected.capacidad}" title="#{bundle.CreateTipoDiscoTitle_capacidad}" required="true" requiredMessage="#{bundle.CreateTipoDiscoRequiredMessage_capacidad}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoDiscoLabel_tecnologia}" for="tecnologia" />
+                        <p:inputText id="tecnologia" value="#{tipoDiscoController.selected.tecnologia}" title="#{bundle.CreateTipoDiscoTitle_tecnologia}" required="true" requiredMessage="#{bundle.CreateTipoDiscoRequiredMessage_tecnologia}"/>
+                    </p:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoDiscoController.create}" value="#{bundle.CreateTipoDiscoSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoDiscoController.prepareList}" value="#{bundle.CreateTipoDiscoShowAllLink}" immediate="true"/>
+
+                    <p:button outcome="/index" value="#{bundle.CreateTipoDiscoIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

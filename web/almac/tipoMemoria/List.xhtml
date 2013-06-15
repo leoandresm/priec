@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoMemoriaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <div id="lista" align="center">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListTipoMemoriaEmpty}" rendered="#{tipoMemoriaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{tipoMemoriaController.items.rowCount > 0}">
+                        <h:outputText value="#{tipoMemoriaController.pagination.pageFirstItem + 1}..#{tipoMemoriaController.pagination.pageLastItem + 1}/#{tipoMemoriaController.pagination.itemsCount}"/>&nbsp;
+                        <p:commandLink action="#{tipoMemoriaController.previous}" value="#{bundle.Previous} #{tipoMemoriaController.pagination.pageSize}" rendered="#{tipoMemoriaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <p:commandLink action="#{tipoMemoriaController.next}" value="#{bundle.Next} #{tipoMemoriaController.pagination.pageSize}" rendered="#{tipoMemoriaController.pagination.hasNextPage}"/>&nbsp;
+                        <p:dataTable value="#{tipoMemoriaController.items}" var="item" rowStyleClass="jsfcrud_odd_row,jsfcrud_even_row" style="border:solid 1px">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoMemoriaTitle_idMemoria}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idMemoria}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoMemoriaTitle_marca}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.marca}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoMemoriaTitle_velocidadFsb}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.velocidadFsb}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoMemoriaTitle_capacidad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.capacidad}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoMemoriaTitle_tecnologia}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tecnologia}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <p:commandButton ajax="false" action="#{tipoMemoriaController.prepareView}" icon="ui-icon-search"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" action="#{tipoMemoriaController.prepareEdit}" icon="ui-icon-pencil"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{tipoMemoriaController.destroy}" icon="ui-icon-trash"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoMemoriaController.prepareCreate}" value="#{bundle.ListTipoMemoriaCreateLink}" icon="ui-icon-document"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

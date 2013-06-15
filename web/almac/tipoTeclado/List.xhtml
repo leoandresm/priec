@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoTecladoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <div id="lista" align="center">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListTipoTecladoEmpty}" rendered="#{tipoTecladoController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{tipoTecladoController.items.rowCount > 0}">
+                        <h:outputText value="#{tipoTecladoController.pagination.pageFirstItem + 1}..#{tipoTecladoController.pagination.pageLastItem + 1}/#{tipoTecladoController.pagination.itemsCount}"/>&nbsp;
+                        <p:commandLink action="#{tipoTecladoController.previous}" value="#{bundle.Previous} #{tipoTecladoController.pagination.pageSize}" rendered="#{tipoTecladoController.pagination.hasPreviousPage}"/>&nbsp;
+                        <p:commandLink action="#{tipoTecladoController.next}" value="#{bundle.Next} #{tipoTecladoController.pagination.pageSize}" rendered="#{tipoTecladoController.pagination.hasNextPage}"/>&nbsp;
+                        <p:dataTable value="#{tipoTecladoController.items}" var="item" rowStyleClass="jsfcrud_odd_row,jsfcrud_even_row" style="border:solid 1px">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoTecladoTitle_idTeclado}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idTeclado}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoTecladoTitle_marca}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.marca}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListTipoTecladoTitle_tecnologia}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tecnologia}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <p:commandButton ajax="false" action="#{tipoTecladoController.prepareView}" icon="ui-icon-search"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" action="#{tipoTecladoController.prepareEdit}" icon="ui-icon-pencil"/>
+                                <h:outputText value=" "/>
+                                <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{tipoTecladoController.destroy}" icon="ui-icon-trash"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoTecladoController.prepareCreate}" value="#{bundle.ListTipoTecladoCreateLink}" icon="ui-icon-document"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

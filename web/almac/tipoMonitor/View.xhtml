@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoMonitorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewTipoMonitorLabel_idMonitor}"/>
+                        <h:outputText value="#{tipoMonitorController.selected.idMonitor}" title="#{bundle.ViewTipoMonitorTitle_idMonitor}"/>
+                        <h:outputText value="#{bundle.ViewTipoMonitorLabel_marca}"/>
+                        <h:outputText value="#{tipoMonitorController.selected.marca}" title="#{bundle.ViewTipoMonitorTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewTipoMonitorLabel_modelo}"/>
+                        <h:outputText value="#{tipoMonitorController.selected.modelo}" title="#{bundle.ViewTipoMonitorTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewTipoMonitorLabel_tecnologia}"/>
+                        <h:outputText value="#{tipoMonitorController.selected.tecnologia}" title="#{bundle.ViewTipoMonitorTitle_tecnologia}"/>
+                        <h:outputText value="#{bundle.ViewTipoMonitorLabel_tamanio}"/>
+                        <h:outputText value="#{tipoMonitorController.selected.tamanio}" title="#{bundle.ViewTipoMonitorTitle_tamanio}"/>
+                    </p:panelGrid>
+                    <br />
+
+                    <p:button outcome="Edit" value="#{bundle.ViewTipoMonitorEditLink}" icon="ui-icon-pencil"/>
+                    <p:commandButton ajax="false" action="#{tipoMonitorController.prepareCreate}" value="#{bundle.ViewTipoMonitorCreateLink}" icon="ui-icon-document"/>
+                    <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{tipoMonitorController.destroyAndView}" value="#{bundle.ViewTipoMonitorDestroyLink}" icon="ui-icon-trash"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoMonitorController.prepareList}" value="#{bundle.ViewTipoMonitorShowAllLink}"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

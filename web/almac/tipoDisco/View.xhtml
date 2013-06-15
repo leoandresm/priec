@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoDiscoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewTipoDiscoLabel_idDisco}"/>
+                        <h:outputText value="#{tipoDiscoController.selected.idDisco}" title="#{bundle.ViewTipoDiscoTitle_idDisco}"/>
+                        <h:outputText value="#{bundle.ViewTipoDiscoLabel_marca}"/>
+                        <h:outputText value="#{tipoDiscoController.selected.marca}" title="#{bundle.ViewTipoDiscoTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewTipoDiscoLabel_modelo}"/>
+                        <h:outputText value="#{tipoDiscoController.selected.modelo}" title="#{bundle.ViewTipoDiscoTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewTipoDiscoLabel_velocidad}"/>
+                        <h:outputText value="#{tipoDiscoController.selected.velocidad}" title="#{bundle.ViewTipoDiscoTitle_velocidad}"/>
+                        <h:outputText value="#{bundle.ViewTipoDiscoLabel_capacidad}"/>
+                        <h:outputText value="#{tipoDiscoController.selected.capacidad}" title="#{bundle.ViewTipoDiscoTitle_capacidad}"/>
+                        <h:outputText value="#{bundle.ViewTipoDiscoLabel_tecnologia}"/>
+                        <h:outputText value="#{tipoDiscoController.selected.tecnologia}" title="#{bundle.ViewTipoDiscoTitle_tecnologia}"/>
+                    </p:panelGrid>
+                    <br />
+
+                    <p:button outcome="Edit" value="#{bundle.ViewTipoDiscoEditLink}" icon="ui-icon-pencil"/>
+                    <p:commandButton ajax="false" action="#{tipoDiscoController.prepareCreate}" value="#{bundle.ViewTipoDiscoCreateLink}" icon="ui-icon-document"/>
+                    <p:commandButton ajax="false" rendered="#{usuarioLogueadoController.admin}" action="#{tipoDiscoController.destroyAndView}" value="#{bundle.ViewTipoDiscoDestroyLink}" icon="ui-icon-trash"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoDiscoController.prepareList}" value="#{bundle.ViewTipoDiscoShowAllLink}"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

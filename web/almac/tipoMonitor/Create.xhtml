@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/user/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTipoMonitorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div id="mensajes" align="center">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </div>            
+            <h:form>
+                <div id="formulario" align="center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateTipoMonitorLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{tipoMonitorController.selected.marca}" title="#{bundle.CreateTipoMonitorTitle_marca}" required="true" requiredMessage="#{bundle.CreateTipoMonitorRequiredMessage_marca}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoMonitorLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{tipoMonitorController.selected.modelo}" title="#{bundle.CreateTipoMonitorTitle_modelo}" required="true" requiredMessage="#{bundle.CreateTipoMonitorRequiredMessage_modelo}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoMonitorLabel_tecnologia}" for="tecnologia" />
+                        <p:inputText id="tecnologia" value="#{tipoMonitorController.selected.tecnologia}" title="#{bundle.CreateTipoMonitorTitle_tecnologia}" required="true" requiredMessage="#{bundle.CreateTipoMonitorRequiredMessage_tecnologia}"/>
+                        <h:outputLabel value="#{bundle.CreateTipoMonitorLabel_tamanio}" for="tamanio" />
+                        <p:inputText id="tamanio" value="#{tipoMonitorController.selected.tamanio}" title="#{bundle.CreateTipoMonitorTitle_tamanio}" required="true" requiredMessage="#{bundle.CreateTipoMonitorRequiredMessage_tamanio}"/>
+                    </p:panelGrid>
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoMonitorController.create}" value="#{bundle.CreateTipoMonitorSaveLink}" icon="ui-icon-disk"/>
+                    <br />
+                    <br />
+                    <p:commandButton ajax="false" action="#{tipoMonitorController.prepareList}" value="#{bundle.CreateTipoMonitorShowAllLink}" immediate="true"/>
+
+                    <p:button outcome="/index" value="#{bundle.CreateTipoMonitorIndexLink}" icon="ui-icon-home"/>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
